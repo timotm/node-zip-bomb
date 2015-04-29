@@ -20,7 +20,7 @@ yauzl.open('test_mismatch_size.zip', function (err, zipFile) {
       ws.__myBuffer = new Buffer(0, "binary")
       ws._write = function (chunk, enc, done) {
         if (this.__myBuffer.length + chunk.length > entry.uncompressedSize) {
-          console.log('actual uncompressed size', this.__myBuffer.length + chunk.length, 'is bigger than advertised size', 'entry.uncompressedSize')
+          console.log('actual uncompressed size', this.__myBuffer.length + chunk.length, 'is bigger than advertised size', entry.uncompressedSize)
         }
         this.__myBuffer = Buffer.concat([this.__myBuffer, chunk])
         done()
